@@ -26,7 +26,7 @@ function Viweproduct() {
 
     const productData = async () => {
         try {
-            const products = await axios.get(`${config}/admin/items/product/${_id}`, {
+            const products = await axios.get(`${config.api}/admin/items/product/${_id}`, {
                 headers: {
                     Authorization: localStorage.getItem("Inventory_billing_app"),
                 },

@@ -29,7 +29,7 @@ function Resetpass() {
         if (resetpass.values.password != resetpass.values.confirmPassword) {
           alert('Password Not equal')
         }
-        const user = await axios.put(`http://localhost:3001/admin/user/reset-password/${id}/${token}`, values);
+        const user = await axios.put(`${config.api}/admin/user/reset-password/${id}/${token}`, values);
 
         if (user.data.message === "Password Updated Successfully") {
           alert('Password Updated Successfully')

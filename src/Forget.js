@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import axios from "axios";
 import './App.css';
+import { config } from "./Config";
 
 
 function Forget() {
@@ -21,7 +22,7 @@ function Forget() {
     },
     onSubmit: async (values) => {
       try {
-        const user = await axios.post(`http://localhost:3001/admin/user/forget`, values);
+        const user = await axios.post(`${config.api}/admin/user/forget`, values);
         if (user.data.message === "Link Sended") {
           alert('Check Your Mail for Reset Password Link')
         }

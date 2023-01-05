@@ -18,7 +18,7 @@ function EditProduct() {
         },
         onSubmit: async (values) => {
             try {
-                const product = await axios.put(`${config}/admin/items/product/${_id}`, values, {
+                const product = await axios.put(`${config.api}/admin/items/product/${_id}`, values, {
                     headers: {
                         Authorization: localStorage.getItem("Inventory_billing_app"),
                     },
@@ -37,7 +37,7 @@ function EditProduct() {
 
     const editProduct = async (_id) => {
         try {
-            const product = await axios.get(`http://localhost:3000/admin/items/product/${_id}`, {
+            const product = await axios.get(`${config.api}/admin/items/product/${_id}`, {
                 headers: {
                     Authorization: localStorage.getItem("Inventory_billing_app"),
                 },

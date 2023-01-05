@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import axios from "axios";
 import './App.css';
+import { config } from "./Config";
 function Register() {
   const navigate = useNavigate();
   const registerForn = useFormik({
@@ -34,7 +35,7 @@ function Register() {
     },
     onSubmit: async (values) => {
       try {
-        const user = await axios.post(`http://localhost:3001/admin/users/register`, values);
+        const user = await axios.post(`${config.api}/admin/users/register`, values);
         if (user.data.message === "user created") {
           alert('successfully registered')
           navigate('/login')

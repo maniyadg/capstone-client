@@ -45,7 +45,7 @@ function Createproduct() {
           },
         onSubmit: async (values) => {
             try {
-                const product = await axios.post(`${config}/admin/items/product`, values, {
+                const product = await axios.post(`${config.api}/admin/items/product`, values, {
                     headers: {
                         Authorization: localStorage.getItem("Inventory_billing_app"),
                     },

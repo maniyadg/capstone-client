@@ -30,7 +30,7 @@ function Dashboard() {
 
 
   const [chart, setChart] = useState([])
-  var baseUrl = `${config }/admin/items/products`;
+  var baseUrl = `${config.api }/admin/items/products`;
 
 
 
