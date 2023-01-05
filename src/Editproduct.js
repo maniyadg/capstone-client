@@ -48,7 +48,7 @@ function EditProduct() {
                     Authorization: localStorage.getItem("Inventory_billing_app"),
                 },
             });
-            setProductList(product.data);
+            EditProduct.setValues(product.data);
         } catch (error) {
             alert("Something went wrong");
         }
