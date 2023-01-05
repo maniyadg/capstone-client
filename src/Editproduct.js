@@ -8,9 +8,7 @@ import { config } from "./Config";
 function EditProduct() {
     const { _id } = useParams()
     const navigate = useNavigate();
-    useEffect(() => {
-        editProduct()
-    }, []);
+
     const EditProduct = useFormik({
         initialValues: {
             name: '',
@@ -38,7 +36,9 @@ function EditProduct() {
             }
         },
     });
-
+    useEffect(() => {
+        editProduct()
+    }, []);
 
     const editProduct = async (_id) => {
         try {
