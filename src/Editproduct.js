@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./css/sb_admin-2.css";
@@ -8,6 +8,7 @@ import { config } from "./Config";
 function EditProduct() {
     const { _id } = useParams()
     const navigate = useNavigate();
+    const [productList, setProductList] = useState([]);
 
     const EditProduct = useFormik({
         initialValues: {
@@ -47,7 +48,7 @@ function EditProduct() {
                     Authorization: localStorage.getItem("Inventory_billing_app"),
                 },
             });
-            EditProduct.setValues(product.data);
+            setProductList(product.data);
         } catch (error) {
             alert("Something went wrong");
         }
