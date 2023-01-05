@@ -41,7 +41,7 @@ function EditProduct() {
         editProduct()
     }, []);
 
-    const editProduct = async (_id) => {
+    const editProduct = async () => {
         try {
             const product = await axios.get(`${config.api}/admin/items/product/${_id}`, {
                 headers: {
