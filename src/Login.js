@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import axios from "axios";
 import './App.css';
+import { config } from "./Config";
+import { UserContext } from "./Usercontext";
 
 
 function Login() {
+  const userName = useContext(UserContext)
   const navigate = useNavigate();
   const loginForm = useFormik({
     initialValues: {
@@ -31,12 +34,13 @@ function Login() {
     },
     onSubmit: async (values) => {
       try {
-        const user = await axios.post(`http://localhost:3001/admin/users/login`, values);
+        const user = await axios.post(`${config.api}/admin/users/login`, values);
         localStorage.setItem("Inventory_billing_app", user.data.token)
         if (user.data.message === "success") {
           alert('login successfully')
           navigate('/portal/product')
         }
+        userName.setuserName({name: values.email})
       } catch (error) {
         alert(error.response.data.message);
       }

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { config } from "./Config";
 import "./css/sb_admin-2.css";
 
 function Createproduct() {
@@ -44,7 +45,7 @@ function Createproduct() {
           },
         onSubmit: async (values) => {
             try {
-                const product = await axios.post(`http://localhost:3001/admin/items/product`, values, {
+                const product = await axios.post(`${config}/admin/items/product`, values, {
                     headers: {
                         Authorization: localStorage.getItem("Inventory_billing_app"),
                     },

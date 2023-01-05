@@ -13,6 +13,7 @@ import {
 import { useEffect, useState } from "react";
 
 import { Line } from 'react-chartjs-2';
+import { config } from "./Config";
 
 ChartJS.register(
   CategoryScale,
@@ -29,7 +30,7 @@ function Dashboard() {
 
 
   const [chart, setChart] = useState([])
-  var baseUrl = "http://localhost:3001/admin/items/products";
+  var baseUrl = `${config }/admin/items/products`;
 
 
 

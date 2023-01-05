@@ -1,12 +1,13 @@
 import React from "react";
-import { Link, useNavigate,useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import axios from "axios";
 import './App.css';
+import { config } from "./Config";
 
 
 function Resetpass() {
-    const { id, token } = useParams()
+  const { id, token } = useParams()
   const navigate = useNavigate();
   const resetpass = useFormik({
     initialValues: {
@@ -25,7 +26,11 @@ function Resetpass() {
     },
     onSubmit: async (values) => {
       try {
-        const user = await axios.put(`http://localhost:3000/admin/user/reset-password/${id}/${token}`, values);
+        if (resetpass.values.password != resetpass.values.confirmPassword) {
+          alert('Password Not equal')
+        }
+        const user = await axios.put(`http://localhost:3001/admin/user/reset-password/${id}/${token}`, values);
+
         if (user.data.message === "Password Updated Successfully") {
           alert('Password Updated Successfully')
           navigate('/login')
@@ -40,7 +45,7 @@ function Resetpass() {
       <div className="d-lg-flex">
         <div className="card form border-0 me-lg-4 mb-lg-0 mb-4">
           <div className="backgroundEffect"></div>
-          <h2>Login Page</h2>
+          <h2>Change Password</h2>
           <div className="row ">
             <div className="col-lg-12">
               <img className="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQep3pj2g_8IgBBwBSxpz1sL_0qqzw_Torsg&usqp=CAU" />
@@ -55,11 +60,10 @@ function Resetpass() {
                   name="password"
                   value={resetpass.values.password}
                   onBlur={resetpass.handleBlur}
-                  onChange={resetpass.handleChange} 
+                  onChange={resetpass.handleChange}
                   className={`form-control
                    ${resetpass.errors.password ? 'error-box' : ''} 
                    ${resetpass.touched.password && !resetpass.errors.password ? 'success-box' : ''}`}
-                  placeholder="Enter Valid Password"
                 />
                 {
                   resetpass.errors.password ? <span style={{ color: "red" }}>{resetpass.errors.password}</span> : null
@@ -76,12 +80,11 @@ function Resetpass() {
                   className={`form-control
                    ${resetpass.errors.password ? 'error-box' : ''} 
                    ${resetpass.touched.password && !resetpass.errors.password ? 'success-box' : ''}`}
-                  placeholder="Enter Valid Password"
                 />
                 {
                   resetpass.errors.password ? <span style={{ color: "red" }}>{resetpass.errors.password}</span> : null
                 }
-                </div>
+              </div>
               <div className="col-lg-12 ">
                 <input
                   type={"submit"}
@@ -100,8 +103,8 @@ function Resetpass() {
           </div>
           <div className="row content">
             <div className="col-lg-12">
-              <Link to="/forget">
-                Forget Password
+              <Link to="/login">
+                Login
               </Link>
             </div>
           </div>
