@@ -1,4 +1,5 @@
 import axios from "axios";
+import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./css/sb_admin-2.css";
@@ -7,6 +8,9 @@ import { config } from "./Config";
 function EditProduct() {
     const { _id } = useParams()
     const navigate = useNavigate();
+    useEffect(() => {
+        editProduct()
+    }, []);
     const EditProduct = useFormik({
         initialValues: {
             name: '',
@@ -16,6 +20,7 @@ function EditProduct() {
             img: '',
             des: ""
         },
+
         onSubmit: async (values) => {
             try {
                 const product = await axios.put(`${config.api}/admin/items/product/${_id}`, values, {
